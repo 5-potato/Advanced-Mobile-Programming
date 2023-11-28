@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/productsoldout"
-        android:layout_width="227dp"
+        android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_gravity="top|end"
         android:layout_marginStart="24dp"
@@ -59,15 +59,13 @@
 
     <TextView
         android:id="@+id/costText"
-        android:layout_width="37dp"
+        android:layout_width="wrap_content"
         android:layout_height="22dp"
-        android:layout_marginEnd="2dp"
         android:text="200"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:translationX="10dp"
         android:translationY="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/costImage"
         app:layout_constraintTop_toBottomOf="@+id/productsoldout" />
 
@@ -75,7 +73,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="원"
         android:textColor="#FFFFFF"
