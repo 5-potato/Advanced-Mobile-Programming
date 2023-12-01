@@ -7,7 +7,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import org.w3c.dom.Text
 
 class SignupActivity : AppCompatActivity() {
@@ -51,7 +53,6 @@ class SignupActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(emailText, passwordText)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // 회원가입이 성공하면 닉네임을 Firestore에 저장
                     val user = auth.currentUser
                     val userId = user?.uid ?: ""
 
@@ -64,12 +65,11 @@ class SignupActivity : AppCompatActivity() {
                         .set(userData)
                         .addOnSuccessListener {
                             Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                            val handler = android.os.Handler()
-                            handler.postDelayed({
-                                // 1초 후에 LoginActivity로 리다이렉션
-                                val intent = Intent(this, LoginActivity::class.java)
-                                startActivity(intent)
-                            }, 1000)
+
+                            val intent = Intent(this, HomeActivity::class.java)
+                            intent.putExtra("NICKNAME", nickname)
+                            startActivity(intent)
+                            finish()
                         }
                         .addOnFailureListener {
                             Toast.makeText(this, "회원가입 실패: 닉네임 저장 실패", Toast.LENGTH_SHORT).show()
